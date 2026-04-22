@@ -172,10 +172,10 @@
     <nav>
         <h1>PREMIUM<span style="color:white">MOTORS</span></h1>
         <div>
-            <a href="#">Showroom</a>
-            <a href="#">Novidades</a>
-            <a href="#">Sobre</a>
-            <a href="#">Contato</a>
+            <a href="<html>.carros">Showroom</a>
+            <a href="novidades.html">Novidades</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="contato.html">Contato</a>
         </div>
     </nav>
 
@@ -187,7 +187,7 @@
 
     <div class="container">
         <div class="card">
-            <img src="https://unsplash.com" alt="Supercarro">
+            <img src="carros.jpeg" alt="Supercarro">
             <div class="card-content">
                 <h3>Performance Máxima</h3>
                 <p>Onde a engenharia encontra a arte. Conheça os modelos que desafiam as leis da física.</p>
@@ -195,7 +195,7 @@
         </div>
 
         <div class="card">
-            <img src="https://unsplash.com" alt="Luxo">
+            <img src="luxo.jpeg" alt="Luxo">
             <div class="card-content">
                 <h3>Design & Luxo</h3>
                 <p>Interiores feitos à mão e acabamentos em fibra de carbono para o motorista exigente.</p>
@@ -203,7 +203,7 @@
         </div>
 
         <div class="card">
-            <img src="https://unsplash.com" alt="Custom">
+            <img src="cust.jpeg" alt="Custom">
             <div class="card-content">
                 <h3>Customização</h3>
                 <p>Transforme sua máquina em uma peça única com nossos pacotes de personalização exclusiva.</p>
@@ -212,7 +212,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Premium Motors. Design para entusiastas.</p>
+        <p>&copy; 2026 Premium Motors. Design para entusiastas.</p>
     </footer>
 
 </body>
