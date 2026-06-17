@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroForte | Futuro Sustentável</title>
+
+  <link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <div class="logo">🌱 AgroForte</div>
+
+    <div class="menu" id="menu">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+    <button id="btnTema">Tema</button>
+    <button id="mobileBtn">☰</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="overlay">
+    <h1>Agro Forte, Futuro Sustentável</h1>
+    <p>Equilíbrio entre produção agrícola e preservação do meio ambiente.</p>
+    <a href="#simulador" class="btn">Simular Impacto</a>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="section">
+  <h2>O que é a AgroForte?</h2>
+  <p>
+    A AgroForte promove uma agricultura moderna, inteligente e sustentável.
+    Nosso objetivo é ajudar produtores rurais a aumentar a produtividade
+    sem destruir o solo, a água e a biodiversidade.
+  </p>
+
+  <p>
+    Trabalhamos com práticas que reduzem desperdício, otimizam recursos naturais
+    e garantem um futuro mais equilibrado para o campo e para a cidade.
+  </p>
+</section>
+
+<!-- IMPACTO -->
+<section id="impacto" class="section bg2">
+  <h2>Impacto no Meio Ambiente</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>🌱 Solo Saudável</h3>
+      <p>Práticas que preservam nutrientes e evitam erosão.</p>
+    </div>
+
+    <div class="card">
+      <h3>💧 Uso Consciente da Água</h3>
+      <p>Redução de desperdício com irrigação inteligente.</p>
+    </div>
+
+    <div class="card">
+      <h3>🌍 Menos Carbono</h3>
+      <p>Diminuição de emissões e impacto ambiental.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section id="simulador" class="section">
+  <h2>Simulador de Sustentabilidade</h2>
+  <p>Digite o tamanho da sua propriedade e veja o impacto positivo estimado.</p>
+
+  <input type="number" id="hectaresInput" placeholder="Hectares (ex: 100)">
+
+  <div class="grid">
+    <div>
+      <p>💧 Água economizada</p>
+      <span id="resAgua">0</span>
+    </div>
+
+    <div>
+      <p>🌍 CO₂ reduzido</p>
+      <span id="resCarbono">0</span>
+    </div>
+
+    <div>
+      <p>📈 Eficiência</p>
+      <span id="resProd">0%</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="section bg3">
+  <h2>Fale com a AgroForte</h2>
+
+  <form id="formContato">
+    <input type="text" placeholder="Nome" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Mensagem"></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="mensagemSucesso" class="hidden">
+    Mensagem enviada com sucesso!
+  </div>
+</section>
+
+<footer class="footer">
+  <p>AgroForte © 2026 — Sustentabilidade no campo</p>
+</footer>
+
+<script src="javascript/java.js"></script>
+</body>
+</html>
