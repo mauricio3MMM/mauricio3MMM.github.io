@@ -1,123 +1,347 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AgroForte | Futuro Sustentável</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Forte, Futuro Sustentável</title>
+    <style>
+        /* Variáveis de Cores para Tema Dinâmico */
+        :root {
+            --bg-principal: #f9fbf9;
+            --bg-card: #ffffff;
+            --texto-principal: #383838;
+            --texto-secundario: #666666;
+            --cor-verde: #2e7d32;
+            --cor-verde-escuro: #1b5e20;
+            --bg-pilares: #edf4ed;
+            --borda: rgba(0,0,0,0.05);
+        }
 
-  <link rel="stylesheet" href="css/css.css">
+        [data-theme="dark"] {
+            --bg-principal: #666666;
+            --bg-card: #1e1e1e;
+            --texto-principal: #e0e0e0;
+            --texto-secundario: #aaaaaa;
+            --cor-verde: #4caf50;
+            --cor-verde-escuro: #81c784;
+            --bg-pilares: #1a231a;
+            --borda: rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--texto-principal);
+            background-color: var(--bg-principal);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Menu de Navegação */
+        header {
+            background-color: var(--bg-card);
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--cor-verde);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--texto-secundario);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cor-verde);
+        }
+
+        /* Botão Alternador de Tema */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--cor-verde);
+            color: var(--cor-verde);
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--cor-verde);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(33, 172, 40, 0.5), rgba(202, 202, 202, 0.692)), url('https://unsplash.com') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 42px; margin-bottom: 15px; font-weight: 800; }
+        .hero p { font-size: 18px; max-width: 600px; margin-bottom: 25px; }
+
+        .btn {
+            background-color: #1d741d;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover { background-color: #1b5e20; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+        .sobre { text-align: center; }
+        .sobre h2 { font-size: 32px; color: var(--cor-verde); margin-bottom: 20px; }
+
+        /* Pilares */
+        .pilares { background-color: var(--bg-pilares); padding: 60px 20px; }
+        .grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--bg-card); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px var(--borda); text-align: center; }
+        .card h3 { color: var(--cor-verde); margin: 15px 0; }
+
+        /* Seção Interativa: Calculadora */
+        .calc-box {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px var(--borda);
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .calc-box input {
+            padding: 10px;
+            width: 150px;
+            border: 1px solid var(--texto-secundario);
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            margin: 15px;
+            background: var(--bg-principal);
+            color: var(--texto-principal);
+        }
+
+        .resultados {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .res-item font { font-size: 28px; font-weight: bold; color: var(--cor-verde); display: block; }
+
+        /* Formulário de Contato */
+        .contato-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--borda);
+        }
+
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; border: 1px solid var(--texto-secundario);
+            border-radius: 5px; background: var(--bg-principal); color: var(--texto-principal);
+        }
+
+        #mensagemSucesso {
+            color: #2e7d32; background: #e8f5e9; padding: 15px;
+            border-radius: 5px; margin-top: 15px; display: none; text-align: center;
+        }
+
+        footer { background-color: #1b5e20; color: white; text-align: center; padding: 30px 20px; margin-top: 60px; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; text-align: center; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .resultados { gap: 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header class="header">
-  <nav class="nav">
-    <div class="logo">🌱 AgroForte</div>
+    <header>
+        <div class="logo">AgroForte</div>
+        <div class="nav-container">
+            <nav>
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#calculadora">Simulador</a>
+                <a href="#contato">Fale Conosco</a>
+            </nav>
+            <button class="theme-toggle" id="btnTema">🌙 Modo Escuro</button>
+        </div>
+    </header>
 
-    <div class="menu" id="menu">
-      <a href="#inicio">Início</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#impacto">Impacto</a>
-      <a href="#simulador">Simulador</a>
-      <a href="#contato">Contato</a>
-    </div>
+    <section class="hero" id="inicio">
+        <h1>Agro Forte, Futuro Sustentável</h1>
+        <p>Produtividade de ponta unida à preservação ambiental intencional.</p>
+        <a href="#calculadora" class="btn">Simular Meu Impacto</a>
+    </section>
 
-    <button id="btnTema">Tema</button>
-    <button id="mobileBtn">☰</button>
-  </nav>
-</header>
+    <section class="container sobre" id="sobre">
+        <h2>Produzir sem Destruir</h2>
+        <p>Desenvolvemos e aplicamos diretrizes tecnológicas focadas no campo para criar um ecossistema produtivo balanceado e resiliente.</p>
+    </section>
 
-<!-- HERO -->
-<section id="inicio" class="hero">
-  <div class="overlay">
-    <h1>Agro Forte, Futuro Sustentável</h1>
-    <p>Equilíbrio entre produção agrícola e preservação do meio ambiente.</p>
-    <a href="#simulador" class="btn">Simular Impacto</a>
-  </div>
-</section>
+    <!-- Pilares -->
+    <section class="pilares">
+        <div class="grid">
+            <div class="card">
+                <div>🌱</div>
+                <h3>Tecnologia Verde</h3>
+                <p>Otimização de recursos através de monitoramento digital por drones e sensores.</p>
+            </div>
+            <div class="card">
+                <div>🔄</div>
+                <h3>Manejo Regenerativo</h3>
+                <p>Sequestro ativo de carbono usando técnicas validadas de plantio direto direto.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- SOBRE -->
-<section id="sobre" class="section">
-  <h2>O que é a AgroForte?</h2>
-  <p>
-    A AgroForte promove uma agricultura moderna, inteligente e sustentável.
-    Nosso objetivo é ajudar produtores rurais a aumentar a produtividade
-    sem destruir o solo, a água e a biodiversidade.
-  </p>
+    <!-- Ferramenta Interativa: Calculadora -->
+    <section class="container" id="calculadora">
+        <div class="sobre">
+            <h2>Simulador de Impacto AgroVerde</h2>
+            <p>Descubra o potencial de sustentabilidade estimado para a sua propriedade rural.</p>
+        </div>
+        
+        <div class="calc-box">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Calculadora de Impacto Ambiental</title>
+                <style>
+                    /* Estilo visual básico para o teste funcionar bonito */
+                    body { font-family: sans-serif; padding: 20px; background: #f4f7f6; }
+                    .calc-box { max-width: 400px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+                    label { display: block; margin-bottom: 8px; color: #333; }
+                    input { width: 100%; padding: 10px; box-sizing: border-box; font-size: 16px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; }
+                    .resultados { display: flex; gap: 15px; }
+                    .res-item { flex: 1; background: #e8f5e9; padding: 15px; border-radius: 6px; text-align: center; }
+                    .res-numero { display: block; font-size: 24px; font-weight: bold; color: #2e7d32; margin-bottom: 5px; }
+                    .res-legenda { font-size: 12px; color: #666; display: block; }
+                </style>
+            </head>
+            <body>
+            
+                <!-- ESTRUTURA DO FORMULÁRIO -->
+                <div class="calc-box">
+                    <label for="hectares" style="font-weight: 600;">Área da sua propriedade (Hectares):</label>
+                    
+                    <!-- Mude o valor aqui para ver a mágica acontecer instantaneamente -->
+                    <input type="number" id="hectares" value="50" min="0" step="any" placeholder="Ex: 50">
+                    
+                    <div class="resultados">
+                        <div class="res-item">
+                            <span id="arvores" class="res-numero">350</span>
+                            <span class="res-legenda">Árvores Preservadas/Ano</span>
+                        </div>
+                        
+                        <div class="res-item">
+                            <span id="agua" class="res-numero">12.500L</span>
+                            <span class="res-legenda">Água Economizada/Dia</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- SCRIPT QUE ALTERA O RESULTADO NA TELA -->
+                <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const inputHectares = document.getElementById('hectares');
+                    const elArvores = document.getElementById('arvores');
+                    const elAgua = document.getElementById('agua');
+            
+                    // Valores de referência (por 1 hectare)
+                    const ARVORES_POR_HECTARE = 7;
+                    const AGUA_POR_HECTARE = 250;
+            
+                    // Formata os números no padrão 1.000, 10.000, etc.
+                    const formatadorBR = new Intl.NumberFormat('pt-BR');
+            
+                    // Esta função limpa a tela e escreve os novos resultados calculados
+                    const recalcularEAlterarTela = () => {
+                        const hectares = parseFloat(inputHectares.value) || 0;
+            
+                        const totalArvores = hectares * ARVORES_POR_HECTARE;
+                        const totalAgua = hectares * AGUA_POR_HECTARE;
+            
+                        // Altera o texto do HTML em tempo real
+                        elArvores.textContent = formatadorBR.format(totalArvores);
+                        elAgua.textContent = formatadorBR.format(totalAgua) + 'L';
+                    };
+            
+                    // Escuta quando o usuário digita ou clica nas setinhas do input
+                    inputHectares.addEventListener('input', recalcularEAlterarTela);
+                    
+                    // Roda ao carregar a página para começar com o valor 50 ativo
+                    recalcularEAlterarTela();
+                });
+                </script>
+            
+            </body>
+            </div>
+        </div>
+    </section>
 
-  <p>
-    Trabalhamos com práticas que reduzem desperdício, otimizam recursos naturais
-    e garantem um futuro mais equilibrado para o campo e para a cidade.
-  </p>
-</section>
-
-<!-- IMPACTO -->
-<section id="impacto" class="section bg2">
-  <h2>Impacto no Meio Ambiente</h2>
-
-  <div class="cards">
-    <div class="card">
-      <h3>🌱 Solo Saudável</h3>
-      <p>Práticas que preservam nutrientes e evitam erosão.</p>
-    </div>
-
-    <div class="card">
-      <h3>💧 Uso Consciente da Água</h3>
-      <p>Redução de desperdício com irrigação inteligente.</p>
-    </div>
-
-    <div class="card">
-      <h3>🌍 Menos Carbono</h3>
-      <p>Diminuição de emissões e impacto ambiental.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SIMULADOR -->
-<section id="simulador" class="section">
-  <h2>Simulador de Sustentabilidade</h2>
-  <p>Digite o tamanho da sua propriedade e veja o impacto positivo estimado.</p>
-
-  <input type="number" id="hectaresInput" placeholder="Hectares (ex: 100)">
-
-  <div class="grid">
-    <div>
-      <p>💧 Água economizada</p>
-      <span id="resAgua">0</span>
-    </div>
-
-    <div>
-      <p>🌍 CO₂ reduzido</p>
-      <span id="resCarbono">0</span>
-    </div>
-
-    <div>
-      <p>📈 Eficiência</p>
-      <span id="resProd">0%</span>
-    </div>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section id="contato" class="section bg3">
-  <h2>Fale com a AgroForte</h2>
-
-  <form id="formContato">
-    <input type="text" placeholder="Nome" required>
-    <input type="email" placeholder="Email" required>
-    <textarea placeholder="Mensagem"></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-
-  <div id="mensagemSucesso" class="hidden">
-    Mensagem enviada com sucesso!
-  </div>
-</section>
-
-<footer class="footer">
-  <p>AgroForte © 2026 — Sustentabilidade no campo</p>
-</footer>
-
-<script src="javascript/java.js"></script>
-</body>
-</html>
+    <!-- Formulário Dinâmico -->
+    <section class="container" id="contato" style="text-align: center;">
+        <h2>Fale com um Especialista</h2>
+        <p>Receba um plano personalizado focado no equilíbrio de sua fazenda.</p>
+        
+        <form class="contato-form" id="formContato" onsubmit="enviarFormulario(event)">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" required placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" required placeholder="seuemail@provedor.com">
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" rows="4" required placeholder="Como podemos te ajudar?"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Enviar Solicitação</button>
+</html>     
