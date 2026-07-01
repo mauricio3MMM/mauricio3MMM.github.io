@@ -1,347 +1,408 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Forte, Futuro Sustentável</title>
-    <style>
-        /* Variáveis de Cores para Tema Dinâmico */
-        :root {
-            --bg-principal: #f9fbf9;
-            --bg-card: #ffffff;
-            --texto-principal: #383838;
-            --texto-secundario: #666666;
-            --cor-verde: #2e7d32;
-            --cor-verde-escuro: #1b5e20;
-            --bg-pilares: #edf4ed;
-            --borda: rgba(0,0,0,0.05);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroForte | Agro Forte, Futuro Sustentável</title>
+  <meta name="description" content="Aumentamos a produtividade do seu cultivo aplicando tecnologias limpas, inteligentes e focadas na preservação a longo prazo.">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#2e7d32',
+              dark: '#4caf50',
+            },
+            'primary-darker': {
+              DEFAULT: '#1b5e20',
+              dark: '#81c784',
+            },
+            accent: '#40916c',
+            background: {
+              light: '#f9fbf9',
+              dark: '#121212',
+            },
+            card: {
+              light: '#ffffff',
+              dark: '#1e1e1e',
+            },
+            texto: {
+              principal: '#383838',
+              principalDark: '#e0e0e0',
+              secundario: '#666666',
+              secundarioDark: '#aaaaaa',
+            },
+            border: {
+              light: 'rgba(0,0,0,0.08)',
+              dark: 'rgba(255,255,255,0.1)',
+            }
+          }
         }
-
-        [data-theme="dark"] {
-            --bg-principal: #666666;
-            --bg-card: #1e1e1e;
-            --texto-principal: #e0e0e0;
-            --texto-secundario: #aaaaaa;
-            --cor-verde: #4caf50;
-            --cor-verde-escuro: #81c784;
-            --bg-pilares: #1a231a;
-            --borda: rgba(255,255,255,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            color: var(--texto-principal);
-            background-color: var(--bg-principal);
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        /* Menu de Navegação */
-        header {
-            background-color: var(--bg-card);
-            padding: 15px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px var(--borda);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-weight: bold;
-            font-size: 24px;
-            color: var(--cor-verde);
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--texto-secundario);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--cor-verde);
-        }
-
-        /* Botão Alternador de Tema */
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--cor-verde);
-            color: var(--cor-verde);
-            padding: 5px 10px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--cor-verde);
-            color: white;
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(rgba(33, 172, 40, 0.5), rgba(202, 202, 202, 0.692)), url('https://unsplash.com') no-repeat center center/cover;
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .hero h1 { font-size: 42px; margin-bottom: 15px; font-weight: 800; }
-        .hero p { font-size: 18px; max-width: 600px; margin-bottom: 25px; }
-
-        .btn {
-            background-color: #1d741d;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn:hover { background-color: #1b5e20; }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-        .sobre { text-align: center; }
-        .sobre h2 { font-size: 32px; color: var(--cor-verde); margin-bottom: 20px; }
-
-        /* Pilares */
-        .pilares { background-color: var(--bg-pilares); padding: 60px 20px; }
-        .grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: var(--bg-card); padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px var(--borda); text-align: center; }
-        .card h3 { color: var(--cor-verde); margin: 15px 0; }
-
-        /* Seção Interativa: Calculadora */
-        .calc-box {
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px var(--borda);
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .calc-box input {
-            padding: 10px;
-            width: 150px;
-            border: 1px solid var(--texto-secundario);
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: center;
-            margin: 15px;
-            background: var(--bg-principal);
-            color: var(--texto-principal);
-        }
-
-        .resultados {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-
-        .res-item font { font-size: 28px; font-weight: bold; color: var(--cor-verde); display: block; }
-
-        /* Formulário de Contato */
-        .contato-form {
-            max-width: 600px;
-            margin: 40px auto 0;
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px var(--borda);
-        }
-
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; border: 1px solid var(--texto-secundario);
-            border-radius: 5px; background: var(--bg-principal); color: var(--texto-principal);
-        }
-
-        #mensagemSucesso {
-            color: #2e7d32; background: #e8f5e9; padding: 15px;
-            border-radius: 5px; margin-top: 15px; display: none; text-align: center;
-        }
-
-        footer { background-color: #1b5e20; color: white; text-align: center; padding: 30px 20px; margin-top: 60px; }
-
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; text-align: center; }
-            .nav-container { flex-direction: column; gap: 10px; }
-            .resultados { gap: 20px; }
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+  </style>
 </head>
-<body>
+<body class="bg-background-light dark:bg-background-dark text-texto-principal dark:text-texto-principalDark transition-colors duration-300">
 
-    <header>
-        <div class="logo">AgroForte</div>
-        <div class="nav-container">
-            <nav>
-                <a href="#inicio">Início</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#calculadora">Simulador</a>
-                <a href="#contato">Fale Conosco</a>
-            </nav>
-            <button class="theme-toggle" id="btnTema">🌙 Modo Escuro</button>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark transition-colors duration-300">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+      <a href="#" class="flex items-center gap-2">
+        <svg class="h-8 w-8 text-primary dark:text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 0v10m0 0l3-3m-3 3l-3-3"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 12.5C8 10 10 8.5 12 8.5s4 1.5 5.5 4"/>
+        </svg>
+        <span class="text-2xl font-bold tracking-tight text-primary dark:text-primary-dark">AgroForte</span>
+      </a>
+
+      <div class="hidden md:flex md:gap-x-8 items-center">
+        <a href="#inicio" class="text-sm font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary dark:hover:text-primary-dark transition-colors">Início</a>
+        <a href="#sobre" class="text-sm font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary dark:hover:text-primary-dark transition-colors">Sobre</a>
+        <a href="#pilares" class="text-sm font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary dark:hover:text-primary-dark transition-colors">Pilares</a>
+        <a href="#calculadora" class="text-sm font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary dark:hover:text-primary-dark transition-colors">Simulador</a>
+        <a href="#depoimentos" class="text-sm font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary dark:hover:text-primary-dark transition-colors">Casos de Sucesso</a>
+        <a href="#contato" class="text-sm font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary dark:hover:text-primary-dark transition-colors">Contato</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-4">
+        <button id="btnTema" class="border border-primary dark:border-primary-dark text-primary dark:text-primary-dark hover:bg-primary hover:text-white dark:hover:bg-primary-dark dark:hover:text-card-dark px-4 py-1.5 rounded-full text-sm font-medium transition-all">
+          Modo Escuro
+        </button>
+        <a href="#calculadora" class="bg-primary dark:bg-primary-dark text-white dark:text-card-dark px-4 py-2 rounded-lg hover:bg-primary-darker dark:hover:bg-primary-darker-dark text-sm font-medium transition-colors">
+          Simular Impacto
+        </a>
+      </div>
+
+      <div class="flex items-center gap-4 md:hidden">
+        <button id="btnTemaMobile" class="text-sm border border-primary px-2 py-1 rounded-full text-primary dark:text-primary-dark dark:border-primary-dark">Tema</button>
+        <button id="mobile-menu-btn" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-texto-principal dark:text-texto-principalDark">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-card-light dark:bg-card-dark border-b border-border-light dark:border-border-dark px-4 pb-4 space-y-1">
+      <a href="#inicio" class="block py-2 text-base font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary">Início</a>
+      <a href="#sobre" class="block py-2 text-base font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary">Sobre</a>
+      <a href="#pilares" class="block py-2 text-base font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary">Pilares</a>
+      <a href="#calculadora" class="block py-2 text-base font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary">Simulador</a>
+      <a href="#depoimentos" class="block py-2 text-base font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary">Casos de Sucesso</a>
+      <a href="#contato" class="block py-2 text-base font-medium text-texto-secundario dark:text-texto-secundarioDark hover:text-primary">Contato</a>
+    </div>
+  </header>
+
+  <section id="inicio" class="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-24 bg-cover bg-center text-white text-center px-4" style="background-image: linear-gradient(to bottom, rgba(27, 94, 32, 0.85), rgba(18, 18, 18, 0.85)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1400');">
+    <div class="relative z-10 mx-auto max-w-4xl py-12">
+      <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-emerald-200 mb-6 backdrop-blur-sm">
+         Sustentabilidade e Tecnologia no Campo
+      </span>
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl mb-6">
+        Agro Forte, <span class="text-emerald-300">Futuro Sustentável</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto text-emerald-50 mb-10 leading-relaxed">
+        Aumentamos a produtividade do seu cultivo aplicando tecnologias limpas, inteligentes e focadas na preservação a longo prazo. Equilíbrio perfeito entre produção e ecossistema.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#calculadora" class="w-full sm:w-auto bg-emerald-600 text-white hover:bg-emerald-700 px-8 py-4 rounded-lg text-base font-bold transition-all shadow-lg hover:scale-105 transform">
+          Simular Meu Impacto
+        </a>
+        <a href="#sobre" class="w-full sm:w-auto border-2 border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-lg text-base font-medium transition-colors">
+          Conheça Nossa Missão
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-card-light dark:bg-card-dark border-y border-border-light dark:border-border-dark transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-4 text-center">
+        <div class="flex flex-col items-center">
+          <span class="text-4xl font-extrabold text-primary dark:text-primary-dark">+150k</span>
+          <span class="mt-2 text-sm text-texto-secundario dark:text-texto-secundarioDark font-medium">Hectares Monitorados</span>
         </div>
-    </header>
-
-    <section class="hero" id="inicio">
-        <h1>Agro Forte, Futuro Sustentável</h1>
-        <p>Produtividade de ponta unida à preservação ambiental intencional.</p>
-        <a href="#calculadora" class="btn">Simular Meu Impacto</a>
-    </section>
-
-    <section class="container sobre" id="sobre">
-        <h2>Produzir sem Destruir</h2>
-        <p>Desenvolvemos e aplicamos diretrizes tecnológicas focadas no campo para criar um ecossistema produtivo balanceado e resiliente.</p>
-    </section>
-
-    <!-- Pilares -->
-    <section class="pilares">
-        <div class="grid">
-            <div class="card">
-                <div>🌱</div>
-                <h3>Tecnologia Verde</h3>
-                <p>Otimização de recursos através de monitoramento digital por drones e sensores.</p>
-            </div>
-            <div class="card">
-                <div>🔄</div>
-                <h3>Manejo Regenerativo</h3>
-                <p>Sequestro ativo de carbono usando técnicas validadas de plantio direto direto.</p>
-            </div>
+        <div class="flex flex-col items-center">
+          <span class="text-4xl font-extrabold text-primary dark:text-primary-dark">32%</span>
+          <span class="mt-2 text-sm text-texto-secundario dark:text-texto-secundarioDark font-medium">Economia Média de Água</span>
         </div>
-    </section>
-
-    <!-- Ferramenta Interativa: Calculadora -->
-    <section class="container" id="calculadora">
-        <div class="sobre">
-            <h2>Simulador de Impacto AgroVerde</h2>
-            <p>Descubra o potencial de sustentabilidade estimado para a sua propriedade rural.</p>
+        <div class="flex flex-col items-center">
+          <span class="text-4xl font-extrabold text-primary dark:text-primary-dark">+1.2k</span>
+          <span class="mt-2 text-sm text-texto-secundario dark:text-texto-secundarioDark font-medium">Produtores Atendidos</span>
         </div>
+        <div class="flex flex-col items-center">
+          <span class="text-4xl font-extrabold text-primary dark:text-primary-dark">0%</span>
+          <span class="mt-2 text-sm text-texto-secundario dark:text-texto-secundarioDark font-medium">Desperdício de Insumos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="py-24 bg-neutral-50 dark:bg-neutral-900/40 transition-colors">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-primary dark:text-primary-dark">Nossa Filosofia</span>
+          <h2 class="mt-2 text-3xl font-bold tracking-tight text-texto-principal dark:text-texto-principalDark sm:text-4xl mb-6">
+            Produzir com Inteligência e Respeito
+          </h2>
+          <p class="text-lg leading-8 text-texto-secundario dark:text-texto-secundarioDark mb-6">
+            A AgroForte nasceu com o propósito de equilibrar as necessidades comerciais do agricultor moderno com a conservação da biodiversidade. Criamos ecossistemas produtivos integrados utilizando análises preditivas, reduzindo custos operacionais e gerando valor real para a terra.
+          </p>
+        </div>
+        <div class="relative h-72 sm:h-96 rounded-2xl overflow-hidden shadow-xl">
+          <img src="agro.jpg" alt="Plantação sustentável tecnológica" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+      <div class="mx-auto mt-16 max-w-5xl grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-8 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-primary dark:text-primary-dark mb-6">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m2.828-9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Sustentabilidade</h3>
+          <p class="text-texto-secundario dark:text-texto-secundarioDark text-sm">Práticas agrícolas que respeitam os ciclos naturais e preservam a biodiversidade local para as futuras gerações.</p>
+        </div>
+        <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-8 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-primary dark:text-primary-dark mb-6">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Responsabilidade</h3>
+          <p class="text-texto-secundario dark:text-texto-secundarioDark text-sm">Compromisso inegociável com as comunidades rurais, segurança do trabalhador e desenvolvimento socioeconômico do campo.</p>
+        </div>
+        <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-8 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-primary dark:text-primary-dark mb-6">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Inovação</h3>
+          <p class="text-texto-secundario dark:text-texto-secundarioDark text-sm">Tecnologias de ponta, Big Data e IoT aplicados ao agronegócio para maximizar eficiência ecológica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pilares" class="py-24 bg-card-light dark:bg-card-dark transition-colors">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary dark:text-primary-dark">Nossos Pilares</span>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Uma Abordagem Global de Futuro</h2>
+        <p class="mt-4 text-base text-texto-secundario dark:text-texto-secundarioDark">Quatro pilares analíticos e operacionais guiando o agro rumo ao desperdício zero.</p>
+      </div>
+
+      <div class="mx-auto max-w-5xl grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div class="group relative rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-8 hover:border-primary transition-all overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-5xl font-black text-neutral-200 dark:text-neutral-800 group-hover:text-primary/20">01</span>
+            <div class="text-2xl p-2 bg-emerald-50 dark:bg-emerald-950 rounded-lg">💧</div>
+          </div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Gestão Hídrica Avançada</h3>
+          <p class="text-sm text-texto-secundario dark:text-texto-secundarioDark leading-relaxed">Sistemas inteligentes de irrigação baseados em umidade do solo em tempo real. Economia drástica sem comprometer o estresse hídrico positivo.</p>
+        </div>
+        <div class="group relative rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-8 hover:border-primary transition-all overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-5xl font-black text-neutral-200 dark:text-neutral-800 group-hover:text-primary/20">02</span>
+            <div class="text-2xl p-2 bg-emerald-50 dark:bg-emerald-950 rounded-lg">☀️</div>
+          </div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Matriz Energética Limpa</h3>
+          <p class="text-sm text-texto-secundario dark:text-texto-secundarioDark leading-relaxed">Implementação integrada de painéis solares fotovoltaicos e usinas de biomassa locais, zerando custos tradicionais de concessionárias.</p>
+        </div>
+        <div class="group relative rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-8 hover:border-primary transition-all overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-5xl font-black text-neutral-200 dark:text-neutral-800 group-hover:text-primary/20">03</span>
+            <div class="text-2xl p-2 bg-emerald-50 dark:bg-emerald-950 rounded-lg">🛸</div>
+          </div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Agricultura de Precisão</h3>
+          <p class="text-sm text-texto-secundario dark:text-texto-secundarioDark leading-relaxed">Sensoriamento por drones de alta definição e satélite. Defensivos e adubações aplicados somente onde há indicação geoespacial de necessidade.</p>
+        </div>
+        <div class="group relative rounded-2xl border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-8 hover:border-primary transition-all overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-5xl font-black text-neutral-200 dark:text-neutral-800 group-hover:text-primary/20">04</span>
+            <div class="text-2xl p-2 bg-emerald-50 dark:bg-emerald-950 rounded-lg">♻️</div>
+          </div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Economia Circular Plena</h3>
+          <p class="text-sm text-texto-secundario dark:text-texto-secundarioDark leading-relaxed">Tratamento inteligente e compostagem de bio-resíduos da colheita e pecuária, transformando passivos ambientais em fertilizantes ricos de alto padrão.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculadora" class="py-24 bg-neutral-50 dark:bg-neutral-900/40 transition-colors">
+    <div class="mx-auto max-w-4xl px-6">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary dark:text-primary-dark">Simulador Web Interativo</span>
+        <h2 class="text-3xl font-bold tracking-tight mt-2">Calcule Seu Impacto Sustentável</h2>
+        <p class="text-texto-secundario dark:text-texto-secundarioDark mt-2">Insira a área da sua propriedade para prever a otimização de recursos anual estimável.</p>
+      </div>
+
+      <div class="bg-card-light dark:bg-card-dark rounded-2xl border border-border-light dark:border-border-dark p-8 md:p-12 shadow-md text-center">
+        <label for="hectaresInput" class="block font-medium text-lg mb-3">Tamanho da sua Área (em Hectares):</label>
+        <input type="number" id="hectaresInput" placeholder="Ex: 150" class="mx-auto block max-w-xs p-4 text-center rounded-xl border border-primary bg-background-light dark:bg-background-dark text-texto-principal dark:text-texto-principalDark text-xl font-bold focus:ring-2 focus:ring-primary focus:outline-none mb-8">
         
-        <div class="calc-box">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Calculadora de Impacto Ambiental</title>
-                <style>
-                    /* Estilo visual básico para o teste funcionar bonito */
-                    body { font-family: sans-serif; padding: 20px; background: #f4f7f6; }
-                    .calc-box { max-width: 400px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-                    label { display: block; margin-bottom: 8px; color: #333; }
-                    input { width: 100%; padding: 10px; box-sizing: border-box; font-size: 16px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; }
-                    .resultados { display: flex; gap: 15px; }
-                    .res-item { flex: 1; background: #e8f5e9; padding: 15px; border-radius: 6px; text-align: center; }
-                    .res-numero { display: block; font-size: 24px; font-weight: bold; color: #2e7d32; margin-bottom: 5px; }
-                    .res-legenda { font-size: 12px; color: #666; display: block; }
-                </style>
-            </head>
-            <body>
-            
-                <!-- ESTRUTURA DO FORMULÁRIO -->
-                <div class="calc-box">
-                    <label for="hectares" style="font-weight: 600;">Área da sua propriedade (Hectares):</label>
-                    
-                    <!-- Mude o valor aqui para ver a mágica acontecer instantaneamente -->
-                    <input type="number" id="hectares" value="50" min="0" step="any" placeholder="Ex: 50">
-                    
-                    <div class="resultados">
-                        <div class="res-item">
-                            <span id="arvores" class="res-numero">350</span>
-                            <span class="res-legenda">Árvores Preservadas/Ano</span>
-                        </div>
-                        
-                        <div class="res-item">
-                            <span id="agua" class="res-numero">12.500L</span>
-                            <span class="res-legenda">Água Economizada/Dia</span>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- SCRIPT QUE ALTERA O RESULTADO NA TELA -->
-                <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    const inputHectares = document.getElementById('hectares');
-                    const elArvores = document.getElementById('arvores');
-                    const elAgua = document.getElementById('agua');
-            
-                    // Valores de referência (por 1 hectare)
-                    const ARVORES_POR_HECTARE = 7;
-                    const AGUA_POR_HECTARE = 250;
-            
-                    // Formata os números no padrão 1.000, 10.000, etc.
-                    const formatadorBR = new Intl.NumberFormat('pt-BR');
-            
-                    // Esta função limpa a tela e escreve os novos resultados calculados
-                    const recalcularEAlterarTela = () => {
-                        const hectares = parseFloat(inputHectares.value) || 0;
-            
-                        const totalArvores = hectares * ARVORES_POR_HECTARE;
-                        const totalAgua = hectares * AGUA_POR_HECTARE;
-            
-                        // Altera o texto do HTML em tempo real
-                        elArvores.textContent = formatadorBR.format(totalArvores);
-                        elAgua.textContent = formatadorBR.format(totalAgua) + 'L';
-                    };
-            
-                    // Escuta quando o usuário digita ou clica nas setinhas do input
-                    inputHectares.addEventListener('input', recalcularEAlterarTela);
-                    
-                    // Roda ao carregar a página para começar com o valor 50 ativo
-                    recalcularEAlterarTela();
-                });
-                </script>
-            
-            </body>
-            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-6 border-t border-border-light dark:border-border-dark">
+          <div class="p-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-texto-secundario dark:text-texto-secundarioDark">Água Poupada/Ano</span>
+            <span id="resAgua" class="block text-3xl font-extrabold text-primary dark:text-primary-dark mt-2">0 L</span>
+          </div>
+          <div class="p-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-texto-secundario dark:text-texto-secundarioDark">CO₂ Retido/Evitado</span>
+            <span id="resCarbono" class="block text-3xl font-extrabold text-primary dark:text-primary-dark mt-2">0 kg</span>
+          </div>
+          <div class="p-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-texto-secundario dark:text-texto-secundarioDark">Eficiência Estimada</span>
+            <span id="resProd" class="block text-3xl font-extrabold text-primary dark:text-primary-dark mt-2">+0%</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Formulário Dinâmico -->
-    <section class="container" id="contato" style="text-align: center;">
-        <h2>Fale com um Especialista</h2>
-        <p>Receba um plano personalizado focado no equilíbrio de sua fazenda.</p>
-        
-        <form class="contato-form" id="formContato" onsubmit="enviarFormulario(event)">
-            <div class="form-group">
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" required placeholder="Digite seu nome">
-            </div>
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" required placeholder="seuemail@provedor.com">
-            </div>
-            <div class="form-group">
-                <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" rows="4" required placeholder="Como podemos te ajudar?"></textarea>
-            </div>
-            <button type="submit" class="btn" style="width: 100%;">Enviar Solicitação</button>
-</html>     
+  <section id="depoimentos" class="py-24 bg-card-light dark:bg-card-dark transition-colors">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary dark:text-primary-dark">Resultados Reais</span>
+        <h2 class="text-3xl font-bold tracking-tight mt-2">Casos de Sucesso no Campo</h2>
+      </div>
+
+      <div class="mx-auto max-w-5xl grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div class="bg-background-light dark:bg-background-dark p-8 rounded-xl border border-border-light dark:border-border-dark relative shadow-sm">
+          <p class="italic text-texto-secundario dark:text-texto-secundarioDark text-base">
+            "A redução no consumo de água com a telemetria da AgroForte pagou o investimento em menos de um ano de operação na safra de grãos. O solo está mais vivo do que nunca."
+          </p>
+          <span class="block mt-6 font-bold text-primary dark:text-primary-dark">— Carlos Henrique S., Produtor do Mato Grosso</span>
+        </div>
+        <div class="bg-background-light dark:bg-background-dark p-8 rounded-xl border border-border-light dark:border-border-dark relative shadow-sm">
+          <p class="italic text-texto-secundario dark:text-texto-secundarioDark text-base">
+            "Conseguimos certificar nossa propriedade para exportação devido aos relatórios transparentes de carbono gerados pela inteligência de precisão da AgroForte."
+          </p>
+          <span class="block mt-6 font-bold text-primary dark:text-primary-dark">— Mariana V., Fazenda Três Caminhos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="py-24 bg-neutral-50 dark:bg-neutral-900/40 transition-colors">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary dark:text-primary-dark">Fale Conosco</span>
+        <h2 class="text-3xl font-bold tracking-tight mt-2">Traga Seu Cultivo para o Futuro</h2>
+        <p class="text-texto-secundario dark:text-texto-secundarioDark mt-2">Preencha o formulário abaixo e um especialista agônomo retornará em breve.</p>
+      </div>
+
+      <div class="bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark rounded-2xl p-8 shadow-md">
+        <form id="formContato" class="space-y-6">
+          <div>
+            <label for="nome" class="block text-sm font-medium mb-1">Nome Completo</label>
+            <input type="text" id="nome" required class="w-full p-3 rounded-lg border border-texto-secundario/30 bg-background-light dark:bg-background-dark text-texto-principal dark:text-texto-principalDark focus:ring-2 focus:ring-primary focus:outline-none">
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1">E-mail Corporativo/Pessoal</label>
+            <input type="email" id="email" required class="w-full p-3 rounded-lg border border-texto-secundario/30 bg-background-light dark:bg-background-dark text-texto-principal dark:text-texto-principalDark focus:ring-2 focus:ring-primary focus:outline-none">
+          </div>
+          <div>
+            <label for="mensagem" class="block text-sm font-medium mb-1">Mensagem / Descreva sua Propriedade</label>
+            <textarea id="mensagem" rows="4" required class="w-full p-3 rounded-lg border border-texto-secundario/30 bg-background-light dark:bg-background-dark text-texto-principal dark:text-texto-principalDark focus:ring-2 focus:ring-primary focus:outline-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-primary hover:bg-primary-darker text-white font-bold p-4 rounded-lg transition-colors">
+            Enviar Mensagem
+          </button>
+        </form>
+        <div id="mensagemSucesso" class="hidden mt-6 p-4 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-200 text-center font-medium border border-emerald-200 dark:border-emerald-800">
+          ✓ Obrigado! Seus dados foram enviados com sucesso. Entraremos em contato!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-emerald-900 dark:bg-neutral-950 text-emerald-100 dark:text-neutral-400 py-12 transition-colors border-t border-neutral-800">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center space-y-4">
+      <p class="text-xl font-bold text-white">AgroForte</p>
+      <p class="text-sm text-emerald-200/70 max-w-md mx-auto">Desenvolvendo soluções agro-ecológicas sustentáveis de alta performance para o produtor rural moderno.</p>
+      <div class="pt-6 border-t border-emerald-800 dark:border-neutral-800 text-xs text-emerald-300/50">
+        &copy; 2026 AgroForte Tecnologia Sustentável. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Alternador de Tema Dinâmico (Modo Escuro / Claro)
+    const btnTema = document.getElementById('btnTema');
+    const btnTemaMobile = document.getElementById('btnTemaMobile');
+    
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        btnTema.textContent = 'Modo Escuro';
+        btnTemaMobile.textContent = 'Tema';
+      } else {
+        document.documentElement.classList.add('dark');
+        btnTema.textContent = 'Modo Claro';
+        btnTemaMobile.textContent = 'Claro';
+      }
+    }
+    btnTema.addEventListener('click', toggleTheme);
+    btnTemaMobile.addEventListener('click', toggleTheme);
+
+    // 2. Controle do Menu Mobile (Abrir e Fechar)
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // 3. Simulador Web Interativo
+    const hectaresInput = document.getElementById('hectaresInput');
+    const resAgua = document.getElementById('resAgua');
+    const resCarbono = document.getElementById('resCarbono');
+    const resProd = document.getElementById('resProd');
+
+    hectaresInput.addEventListener('input', (e) => {
+      const hectares = parseFloat(e.target.value);
+
+      if (isNaN(hectares) || hectares <= 0) {
+        resAgua.textContent = '0 L';
+        resCarbono.textContent = '0 kg';
+        resProd.textContent = '+0%';
+        return;
+      }
+
+      const aguaPoupada = hectares * 12000;  
+      const co2Evitado = hectares * 450;     
+      const eficiencia = Math.min(35, (hectares * 0.08) + 15).toFixed(1); 
+
+      resAgua.textContent = `${aguaPoupada.toLocaleString('pt-BR')} L`;
+      resCarbono.textContent = `${co2Evitado.toLocaleString('pt-BR')} kg`;
+      resProd.textContent = `+${eficiencia}%`;
+    });
+
+    // 4. Envio do Formulário de Contato com Feedback Visual
+    const formContato = document.getElementById('formContato');
+    const mensagemSucesso = document.getElementById('mensagemSucesso');
+
+    formContato.addEventListener('submit', (e) => {
+      e.preventDefault(); 
+      
+      mensagemSucesso.classList.remove('hidden');
+      formContato.reset();
+
+      setTimeout(() => {
+        mensagemSucesso.classList.add('hidden');
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
